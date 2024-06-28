@@ -52,7 +52,12 @@ const AnswerForm = () => {
                 )}
             </fieldset>
             <div>
-                <Input onClick={acceptAnswer} type='button' value='Answer' />
+                <Input
+                    id='answer-btn'
+                    onClick={acceptAnswer}
+                    type='button'
+                    value='Answer'
+                />
             </div>
         </form>
     )
