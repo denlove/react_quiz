@@ -15,7 +15,9 @@
         "react-router-dom": "^6.24.0",
         "react-scripts": "5.0.1",
         "@reduxjs/toolkit": "^2.2.5",
-        "react-redux": "^9.1.2"
+        "react-redux": "^9.1.2",
+        "styled-components": "^6.1.11",
+        "redux-persist": "^6.0.0"
     },
     "devDependencies": {
         "@testing-library/jest-dom": "^5.14.1",
@@ -47,5 +49,8 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
+    },
+    "resolutions": {
+        "styled-components": "^5"
     }
 }
