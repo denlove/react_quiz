@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
 import questionReducer from './slices/questionSlice'
+import timerReducer from './slices/timerSlice'
 import {
     FLUSH,
     REHYDRATE,
@@ -15,6 +16,7 @@ import storage from 'redux-persist/lib/storage'
 
 const rootReducer = combineReducers({
     questionReducer,
+    timerReducer,
 })
 
 const persistConfig = {
