@@ -1,6 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { InputType, QuestionStateType } from '../../types/types'
 import { RootState } from '../store'
+import { MOCK_DATA } from '../../utils/mock'
+import { disableAnswer } from '../../handlers/disableAnswer'
 
 export interface IQuestionState {
     id: number
@@ -13,42 +15,9 @@ export interface IQuestionState {
     state: QuestionStateType
 }
 
-const initialState = [
-    {
-        id: 0,
-        question: 'First question ................... First?',
-        answer: {
-            type: 'radio',
-            variants: ['First answer', 'Second answer', 'Third answer'],
-            result: [],
-        },
-        state: 'active',
-    },
-    {
-        id: 1,
-        question: 'Second question ................... Second?',
-        answer: {
-            type: 'checkbox',
-            variants: ['First answer', 'Second answer', 'Third answer'],
-            result: [],
-        },
-        state: 'default',
-    },
-    {
-        id: 2,
-        question: 'Third question ................... Third?',
-        answer: {
-            type: 'text',
-            variants: [],
-            result: [],
-        },
-        state: 'default',
-    },
-] satisfies Array<IQuestionState> as Array<IQuestionState>
-
 const questionSlice = createSlice({
     name: 'question',
-    initialState,
+    initialState: MOCK_DATA.test,
     reducers: {
         answerTheQuestion: (
             state,
@@ -58,16 +27,15 @@ const questionSlice = createSlice({
             if (state[payload.id + 1]) {
                 state[payload.id].state = 'answered'
                 state[payload.id + 1].state = 'active'
+            } else {
+                alert('Well done!')
+                disableAnswer()
             }
         },
-        addNewQuestion: (
-            state,
-            { payload }: PayloadAction<IQuestionState>,
-        ) => {},
     },
 })
 
-export const { answerTheQuestion, addNewQuestion } = questionSlice.actions
+export const { answerTheQuestion } = questionSlice.actions
 export default questionSlice.reducer
 
 export const questionsLength = (state: RootState) =>
