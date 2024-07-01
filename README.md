@@ -30,4 +30,4 @@ The field `test` has all tests/questions/quiz with details. According this table
 
 
 > [!WARNING]  
-> ___If you want set new content, e.g. add new question or set timer, you must clean LocalStorage in your browser!!!___
+> ___If you want to set new content, e.g. add new question or set timer, you must clean LocalStorage in your browser first and then mutate MOCK_DATA constant!!!___
