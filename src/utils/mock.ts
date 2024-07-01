@@ -5,7 +5,7 @@ export const MOCK_PARAGRAPH = 'Just answer the few questions :D'
 
 export const MOCK_DATA: ImockData = {
     timer: {
-        time: '',
+        time: '0:10',
         isExpired: false,
     },
     test: [
