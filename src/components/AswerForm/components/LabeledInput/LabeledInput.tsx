@@ -1,5 +1,6 @@
 import { InputType } from '../../../../types/types'
 import Input from '../../../../ui/Input/Input'
+import { StyledLabel } from './LabeledInput.styles'
 
 interface ILabeledInput extends React.HTMLProps<HTMLInputElement> {
     text: string
@@ -8,10 +9,10 @@ interface ILabeledInput extends React.HTMLProps<HTMLInputElement> {
 
 const LabelInput = ({ id, name, text, type }: ILabeledInput) => {
     return (
-        <label>
+        <StyledLabel>
             <Input id={id} name={name} type={type} required />
             {text}
-        </label>
+        </StyledLabel>
     )
 }
 

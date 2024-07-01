@@ -1,42 +1,37 @@
 import { useRef } from 'react'
-import { useSelector } from 'react-redux'
 import Input from '../../ui/Input/Input'
 import LabeledInput from './components/LabeledInput/LabeledInput'
 import {
     IQuestionState,
     activeQuestion,
-    answerTheQuestion,
 } from '../../redux/slices/questionSlice'
 import TextArea from '../../ui/TextArea/TextArea'
 import ProgressBar from './components/ProgressBar/ProgressBar'
-import { useAppDispatch } from '../../redux/types'
+import { useAppSelector } from '../../redux/types'
+import {
+    FieldSet,
+    FormButtons,
+    Question,
+    StyledForm,
+} from './AnswerForm.styles'
+import { useAnswer } from './useAnswer'
+import { isExpired } from '../../redux/slices/timerSlice'
 
 const AnswerForm = () => {
-    const active = useSelector(activeQuestion)
-    const dispatch = useAppDispatch()
+    const active = useAppSelector(activeQuestion)
+    const isTheEnd = useAppSelector(isExpired)
     const fieldset = useRef<HTMLFieldSetElement>(null)
     const { id, question, answer } = active as IQuestionState
-
-    const acceptAnswer = (e: React.MouseEvent) => {
-        const labels = document.querySelectorAll('label:has(input:checked)')
-        const textarea = document.querySelector('textarea')
-
-        if (labels.length) {
-            const result = [...labels].map(
-                el => el.textContent,
-            ) as Array<string>
-            dispatch(answerTheQuestion({ id, result }))
-        } else if (textarea?.value) {
-            const result = [textarea.value]
-            dispatch(answerTheQuestion({ id, result }))
-        }
-    }
+    const acceptAnswer = useAnswer(id)
 
     return (
-        <form onSubmit={e => e.preventDefault()}>
+        <StyledForm onSubmit={e => e.preventDefault()}>
             <ProgressBar activeTabId={id} />
-            <fieldset ref={fieldset} id='question-set'>
-                <legend>{question}</legend>
+            <FieldSet ref={fieldset} id='question-set'>
+                <Question>
+                    {`${id + 1}. `}
+                    {question}
+                </Question>
                 {answer.type !== 'text' ? (
                     answer.variants?.map((el, id) => (
                         <LabeledInput
@@ -50,16 +45,17 @@ const AnswerForm = () => {
                 ) : (
                     <TextArea />
                 )}
-            </fieldset>
-            <div>
+            </FieldSet>
+            <FormButtons>
                 <Input
                     id='answer-btn'
                     onClick={acceptAnswer}
                     type='button'
                     value='Answer'
+                    disabled={isTheEnd}
                 />
-            </div>
-        </form>
+            </FormButtons>
+        </StyledForm>
     )
 }
 

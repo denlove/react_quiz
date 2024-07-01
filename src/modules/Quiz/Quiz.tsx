@@ -1,12 +1,13 @@
 import AnswerForm from '../../components/AswerForm/AnswerForm'
 import QuizHeader from '../../components/QuizHeader/QuizHeader'
+import { StyledMain } from './Quiz.styles'
 
 const Quiz = () => {
     return (
-        <main>
+        <StyledMain>
             <QuizHeader />
             <AnswerForm />
-        </main>
+        </StyledMain>
     )
 }
 
