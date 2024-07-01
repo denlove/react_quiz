@@ -6,19 +6,17 @@ interface IStepBlock {
 }
 
 const StyledStep = styled.span<IStepBlock>`
-    width: 2rem;
-    height: 0.5rem;
     ${({ state }) =>
         state === 'answered'
             ? css`
-                  background-color: black;
+                  background-color: hsla(0, 0%, 50%, 0.2);
               `
             : state === 'active'
               ? css`
-                    background-color: red;
+                    background-color: hsla(0, 50%, 50%, 0.3);
                 `
               : css`
-                    background-color: grey;
+                    background-color: hsla(0, 0%, 50%, 0.1);
                 `}
 `
 

@@ -2,19 +2,11 @@ import { useSelector } from 'react-redux'
 import StepBlock from '../../../../ui/StepBlock/StepBlock'
 import { questionsLength } from '../../../../redux/slices/questionSlice'
 import { QuestionStateType } from '../../../../types/types'
-import styled from 'styled-components'
+import { StyledBar } from './ProgressBar.styles'
 
 interface IProgressBar {
     activeTabId: number
 }
-
-const StyledBar = styled.div`
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 1rem;
-`
 
 const ProgressBar = ({ activeTabId }: IProgressBar) => {
     const length = useSelector(questionsLength)

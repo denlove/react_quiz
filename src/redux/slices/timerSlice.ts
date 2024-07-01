@@ -15,9 +15,7 @@ const timerSlice = createSlice({
             state.time = payload
         },
         timerExpired: state => {
-            state.time = '0:00'
             state.isExpired = true
-            alert('Time is over')
         },
     },
 })
@@ -26,3 +24,4 @@ export const { timerExpired, saveTimer } = timerSlice.actions
 export default timerSlice.reducer
 
 export const getTimer = (state: RootState) => state.timerReducer.time
+export const isExpired = (state: RootState) => state.timerReducer.isExpired

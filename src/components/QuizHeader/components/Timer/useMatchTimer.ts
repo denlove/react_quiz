@@ -13,12 +13,12 @@ export const useMatchTimer = () => {
         disableAnswer()
     }
 
-    const { hours, minutes, seconds, isRunning } = useTimer({
+    const { hours, minutes, seconds, isRunning, pause } = useTimer({
         expiryTimestamp: convertStringTimeToMilis(timer),
         onExpire: expireHandle,
     })
 
     let time = `${hours}:${minutes}:${seconds}`
 
-    return { time, isRunning }
+    return { time, isRunning, pause }
 }
